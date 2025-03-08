@@ -1,11 +1,11 @@
 import { BrowserRouter, Route, Routes } from 'react-router'
-import MainPage from './main'
+import CalendarPage from './main'
 
 const PagesRouter = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<MainPage />} />
+        <Route path="/" element={<CalendarPage />} />
       </Routes>
     </BrowserRouter>
   )

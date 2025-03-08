@@ -22,7 +22,7 @@ interface StoreState {
   }
 }
 
-const useStore = create<StoreState>()((set, get) => ({
+export const useMainStore = create<StoreState>()((set, get) => ({
   rooms: [],
   bookings: [],
   isLoading: false,
@@ -103,5 +103,3 @@ const useStore = create<StoreState>()((set, get) => ({
     },
   },
 }))
-
-export default useStore

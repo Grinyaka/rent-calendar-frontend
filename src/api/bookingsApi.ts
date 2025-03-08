@@ -1,6 +1,6 @@
-import { API_URL } from '.'
 import { Booking } from '../models/Booking'
 import { JsonObject } from '../models/JsonObject'
+import { API_URL } from '../utils/constants'
 
 const GET_BOOKINGS_ENDPOINT = `${API_URL}/bookings?start_date={{startDate}}&end_date={{endDate}}`
 const DELETE_BOOKING_ENDPOINT = `${API_URL}/bookings?id={{id}}`
