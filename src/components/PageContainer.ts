@@ -8,4 +8,7 @@ export const PageContainer = styled.div`
 
   flex-grow: 1;
   overflow-y: scroll;
+  overflow-x: hidden;
+
+  max-width: 900px;
 `

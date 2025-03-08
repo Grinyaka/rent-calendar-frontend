@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import { useEffect, useRef } from 'react'
 import ReactDOM from 'react-dom'
 import styled from 'styled-components'
 
@@ -14,14 +14,8 @@ const ModalOverlay = styled.div`
   align-items: center;
 `
 
-const ModalContent = styled.div`
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  width: 400px;
-`
-
 const Modal = ({children, onClose}) => {
+  const modalRef = useRef<HTMLDivElement>(null)
   useEffect(() => {
     const handleEscape = (e) => {
       if (e.key === 'Escape') onClose()
@@ -30,9 +24,16 @@ const Modal = ({children, onClose}) => {
     return () => document.removeEventListener('keydown', handleEscape)
   }, [onClose])
 
+  const handleClickOutside = (e) => {
+    const target = e.target
+    if (modalRef.current && target === modalRef.current) {
+      return onClose()
+    }
+  }
+
   return ReactDOM.createPortal(
-    <ModalOverlay onClick={onClose}>
-      <ModalContent onClick={(e) => e.stopPropagation()}>{children}</ModalContent>
+    <ModalOverlay ref={modalRef} onClick={handleClickOutside}>
+      {children}
     </ModalOverlay>,
     document.getElementById('modal-root'),
   )
