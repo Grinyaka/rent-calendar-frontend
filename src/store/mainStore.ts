@@ -19,6 +19,8 @@ interface StoreState {
 
     deleteRoom: (id: number) => Promise<void>
     deleteBooking: (id: number) => Promise<void>
+
+    clearError: () => void 
   }
 }
 
@@ -29,7 +31,7 @@ export const useMainStore = create<StoreState>()((set, get) => ({
   error: '',
   actions: {
     async fetchRooms() {
-      set({isLoading: true})
+      set({isLoading: true, error: ''})
       try {
         const rooms = await MainRepository.rooms.fetch()
         set({rooms})
@@ -41,7 +43,7 @@ export const useMainStore = create<StoreState>()((set, get) => ({
     },
 
     async fetchBookings(startDate: string, endDate: string) {
-      set({isLoading: true})
+      set({isLoading: true, error: ''})
       try {
         const bookings = await MainRepository.bookings.fetch(startDate, endDate)
         set({bookings})
@@ -53,7 +55,7 @@ export const useMainStore = create<StoreState>()((set, get) => ({
     },
 
     async createRoom(name: string) {
-      set({isLoading: true})
+      set({isLoading: true, error: ''})
       try {
         const newRoom = await MainRepository.rooms.create(name)
         set(({rooms}) => ({rooms: [newRoom, ...rooms]}))
@@ -65,7 +67,7 @@ export const useMainStore = create<StoreState>()((set, get) => ({
     },
 
     async createBooking(booking: Omit<Booking, 'id'>) {
-      set({isLoading: true})
+      set({isLoading: true, error: ''})
       try {
         const newBooking = await MainRepository.bookings.create(booking)
         set(({bookings}) => ({bookings: [newBooking, ...bookings]}))
@@ -77,7 +79,7 @@ export const useMainStore = create<StoreState>()((set, get) => ({
     },
 
     async deleteRoom(roomId: number) {
-      set({isLoading: true})
+      set({isLoading: true, error: ''})
       try {
         await MainRepository.rooms.delete(roomId)
         set(({rooms}) => ({rooms: rooms.filter((room) => room.id !== roomId)}))
@@ -89,7 +91,7 @@ export const useMainStore = create<StoreState>()((set, get) => ({
     },
 
     async deleteBooking(bookingId: number) {
-      set({isLoading: true})
+      set({isLoading: true, error: ''})
       try {
         await MainRepository.bookings.delete(bookingId)
         set(({bookings}) => ({
@@ -100,6 +102,10 @@ export const useMainStore = create<StoreState>()((set, get) => ({
       } finally {
         set({isLoading: false})
       }
+    },
+
+    clearError() {
+      set({error: ''})
     },
   },
 }))

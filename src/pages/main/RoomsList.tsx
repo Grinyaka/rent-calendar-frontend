@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import DropdownMenu from './DropdownMenu'
+import moment from 'moment'
 
 const Wrapper = styled.div`
   height: auto;
@@ -8,10 +9,11 @@ const Wrapper = styled.div`
 
   position: relative;
 `
+
 const RoomsList = () => {
   return (
     <Wrapper>
-      List goes here
+      List here
       <DropdownMenu />
     </Wrapper>
   )

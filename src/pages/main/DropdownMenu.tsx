@@ -25,8 +25,8 @@ const OpenButton = styled(Button)`
 const MenuDropdown = styled.div<{$isOpen: boolean}>`
   display: ${({$isOpen}) => ($isOpen ? 'flex' : 'none')};
   position: ${({$isOpen}) => ($isOpen ? 'absolute' : 'static')};
-  top: calc(100% + 10px);
-  left: 0;
+  bottom: calc(100% + 10px);
+  right: 0;
   border-radius: 5px;
   background-color: ${({theme}) => theme.backgroundColors.card};
   color: ${({theme}) => theme.textColors.secondary};

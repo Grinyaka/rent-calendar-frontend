@@ -13,8 +13,8 @@ const StyledButton = styled.button`
   user-select: none;
   color: ${({theme}) => theme.textColors.primary};
 
-  transition: background-color 0.2s ease-in-out;
-  border: none;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, opacity 0.2s ease-in-out, border-color 0.2s ease-in-out;
+  border: 2px solid transparent;
 
   &:disabled {
     opacity: 0.5;
@@ -23,14 +23,17 @@ const StyledButton = styled.button`
 `
 
 const PrimaryButton = styled(StyledButton)`
-  background: ${({theme}) => theme.backgroundColors.button};
-
+  border-color: ${({theme}) => theme.backgroundColors.button};
   &:hover {
-    background-color: ${({theme}) => theme.backgroundColors.buttonHover};
+    border-color: ${({theme}) => theme.backgroundColors.buttonHover};
   }
 `
 const AccentButton = styled(StyledButton)`
-  background: ${({theme}) => theme.backgroundColors.accent};
+  border-color: ${({theme}) => theme.backgroundColors.accent};
+  color: ${({theme}) => theme.backgroundColors.accent};
+  &:not(:disabled):hover {
+    opacity: 0.8;
+  }
 `
 
 interface Props extends React.ComponentProps<'button'> {
