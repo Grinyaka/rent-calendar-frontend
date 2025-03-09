@@ -1,10 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { useShallow } from 'zustand/shallow'
-import { Input } from '../../components'
-import Button from '../../components/Button'
-import Modal from '../../components/Modal'
-import { Spinner } from '../../components/Spinner'
+import { Input, Modal, Button, Spinner } from '../../components'
 import { useMainStore } from '../../store/mainStore'
 
 type Props = {

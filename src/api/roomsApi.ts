@@ -5,7 +5,6 @@ import { API_URL } from '../utils/constants'
 const ROOMS_ENDPOINT = `${API_URL}/rooms`
 
 export const fetchRooms = async (): Promise<Room[]> => {
-  console.log(ROOMS_ENDPOINT)
   try {
     const response = await fetch(ROOMS_ENDPOINT)
     const json: JsonObject<Room>[] = await response.json()

@@ -40,7 +40,7 @@ interface Props extends React.ComponentProps<'button'> {
   buttonType?: 'primary' | 'accent'
 }
 
-const Button = ({buttonType, children, ...props}: Props) => {
+export const Button = ({buttonType, children, ...props}: Props) => {
   if (buttonType === 'primary') {
     return <PrimaryButton {...props}>{children}</PrimaryButton>
   } 
@@ -51,4 +51,3 @@ const Button = ({buttonType, children, ...props}: Props) => {
   return <StyledButton {...props}>{children}</StyledButton>
 }
 
-export default Button

@@ -14,7 +14,7 @@ const ModalOverlay = styled.div`
   align-items: center;
 `
 
-const Modal = ({children, onClose}) => {
+export const Modal = ({children, onClose}) => {
   const modalRef = useRef<HTMLDivElement>(null)
   useEffect(() => {
     const handleEscape = (e) => {
@@ -39,4 +39,3 @@ const Modal = ({children, onClose}) => {
   )
 }
 
-export default Modal

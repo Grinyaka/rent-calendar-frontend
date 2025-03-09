@@ -1,22 +1,21 @@
 import styled from 'styled-components'
-import DropdownMenu from './DropdownMenu'
-import moment from 'moment'
+import { useShallow } from 'zustand/shallow'
+import { useMainStore } from '../../store/mainStore'
 
-const Wrapper = styled.div`
-  height: auto;
+const RoomItem = styled.div`
   width: 100%;
-  min-height: 200px;
-
-  position: relative;
+  padding: 10px;
+  font-size: ${({theme}) => theme.fontSizes.small};
+  color: ${({theme}) => theme.textColors.secondary};
+  border-radius: 5px;
+  background-color: ${({theme}) => theme.backgroundColors.card};
 `
 
 const RoomsList = () => {
-  return (
-    <Wrapper>
-      List here
-      <DropdownMenu />
-    </Wrapper>
+  const {rooms} = useMainStore(
+    useShallow((state) => ({isLoading: state.isLoading, rooms: state.rooms})),
   )
+  return rooms.map((room) => <RoomItem key={room.id}>{room.name}</RoomItem>)
 }
 
 export default RoomsList
